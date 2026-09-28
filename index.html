@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Samudra — Marketplace Online</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header>
+  <div class="topbar">
+    <a class="brand" href="#">Samudra<span>.</span></a>
+    <form class="search" id="searchForm">
+      <span>⌕</span><input id="searchInput" type="search" placeholder="Cari produk, brand, atau toko..." aria-label="Cari produk">
+      <button type="submit">Cari</button>
+    </form>
+    <div class="top-actions">
+      <button class="link-btn" id="helpBtn">Bantuan</button>
+      <button class="link-btn" id="loginBtn">Masuk</button>
+      <button class="pill-btn" id="registerBtn">Daftar</button>
+      <div class="profile-menu" id="profileMenu" hidden>
+        <button class="profile-trigger" id="profileTrigger"><span class="profile-avatar" id="profileAvatar">U</span><span id="profileLabel">Profil</span><span class="profile-chevron">⌄</span></button>
+        <div class="profile-dropdown" id="profileDropdown">
+          <div class="profile-summary"><div class="profile-avatar large" id="profileAvatarLarge">U</div><div><b id="profileNameTop">Pengguna</b><small id="profileRoleTop">Customer</small></div></div>
+          <a href="customer.html" id="profileAccountLink">Profil Saya</a>
+          <a href="seller.html" id="profileSellerLink" hidden>Seller Center</a>
+          <button id="profileLogout">Keluar</button>
+        </div>
+      </div>
+      <button class="cart-btn" id="cartBtn">🛒 <b id="cartCount">0</b></button>
+    </div>
+  </div>
+  <nav class="catnav"><div class="wrap" id="categoryNav"></div></nav>
+</header>
+
+<main>
+<section class="hero"><div class="wrap hero-wrap">
+  <div class="hero-text">
+    <div class="kicker">Marketplace lokal, ongkir hemat</div>
+    <h1>Semua kebutuhanmu, satu arus belanja</h1>
+    <p>Ribuan produk dari berbagai penjual, pencarian cepat, keranjang praktis, dan checkout dalam satu alur.</p>
+    <div class="hero-cta"><button class="btn-primary" id="shopBtn">Mulai Belanja</button><button class="btn-ghost" id="sellerBtn">Jadi Penjual</button></div>
+  </div>
+  <div class="hero-card"><div class="label">Transaksi hari ini</div><div class="figure">128.430</div><div class="wave-row"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+</div></section>
+
+<section class="wrap chips"><div class="chips-grid" id="categoryChips"></div></section>
+
+<section class="section wrap" id="flashSection"><div class="flash"><div class="flash-head"><h2>Flash Sale</h2><div class="timer" id="timer"><span>02</span><span>:</span><span>14</span><span>:</span><span>08</span></div></div><div class="grid" id="flashProducts"></div></div></section>
+
+<section class="section wrap" id="productsSection"><div class="section-head"><h2 id="productTitle">Rekomendasi Untukmu</h2><button class="text-btn" id="resetFilter">Reset filter</button></div><div class="grid" id="productGrid"></div></section>
+
+<section class="section wrap"><div class="banner"><div><h3>Buka toko dan jangkau jutaan pembeli</h3><p>Daftarkan toko, kelola produk dan proses pesanan dari satu tempat.</p><button class="btn-primary" id="sellerBannerBtn">Daftar Jadi Penjual</button></div></div></section>
+</main>
+
+<footer><div class="wrap"><div class="foot-grid"><div><h4>Belanja</h4><a href="#productsSection">Kategori</a><a href="#flashSection">Flash Sale</a><a href="#">Voucher</a></div><div><h4>Bantuan</h4><button class="footer-btn" id="footerHelp">Pusat Bantuan</button><button class="footer-btn" id="trackBtn">Lacak Pesanan</button><button class="footer-btn" id="returnBtn">Pengembalian</button></div><div><h4>Tentang</h4><a href="#">Tentang Samudra</a><a href="#">Karier</a><a href="#">Blog</a></div><div><h4>Jual di Samudra</h4><button class="footer-btn" id="footerSeller">Mulai Berjualan</button><a href="#">Pusat Edukasi Seller</a></div></div><div class="copyright"><span>© 2026 Samudra. Semua hak dilindungi.</span><span class="admin-footer-sep">|</span><a class="admin-footer-link" href="admin.html">Admin</a></div></div></footer>
+
+<div class="modal" id="modal"><div class="modal-card"><button class="close" id="closeModal">×</button><div id="modalContent"></div></div></div>
+<div class="toast" id="toast"></div>
+<script src="app.js"></script>
+</body>
+</html>

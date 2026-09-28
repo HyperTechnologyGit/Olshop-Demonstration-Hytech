@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Samudra — Belanja Serba Ada</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#001D39; --navy:#0A4174; --slate:#49769F; --teal:#4E8EA2;
+  --sea:#6EA2B3; --sky:#7BBDE8; --mist:#BDD8E9;
+  --ink:#0A1723; --sub:#41607A; --paper:#F3F8FC; --card:#FFFFFF;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{font-family:'Inter',sans-serif;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+h1,h2,h3,.brand,.price{font-family:'Sora',sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+header{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:rgba(243,248,252,.85);backdrop-filter:blur(14px);border-bottom:1px solid rgba(10,65,116,.08)}
+.topbar{display:flex;align-items:center;gap:26px;padding:16px 20px;max-width:1180px;margin:0 auto}
+.brand{font-size:21px;font-weight:800;letter-spacing:-0.02em;color:var(--deep)}
+.brand span{color:var(--sky)}
+.search{flex:1;display:flex;align-items:center;gap:10px;background:#fff;border:1px solid rgba(10,65,116,.14);border-radius:14px;padding:0 6px 0 16px;box-shadow:0 1px 2px rgba(0,29,57,.04)}
+.search svg{flex:0 0 auto;opacity:.45}
+.search input{flex:1;border:0;background:transparent;padding:12px 8px;color:var(--ink);font-size:14px;outline:none}
+.search input::placeholder{color:#9DB3C4}
+.search button{border:0;background:var(--deep);color:#fff;padding:10px 20px;border-radius:10px;font-weight:600;font-size:13.5px;cursor:pointer;margin:5px}
+.top-actions{display:flex;align-items:center;gap:18px;font-size:14px;white-space:nowrap}
+.top-actions a{color:var(--sub);font-weight:500}
+.top-actions a:hover{color:var(--deep)}
+.pill-btn{background:var(--deep);color:#fff;padding:10px 18px;border-radius:11px;font-weight:600}
+.catnav{border-bottom:1px solid rgba(10,65,116,.08)}
+.catnav .wrap{display:flex;gap:28px;overflow-x:auto;font-size:13.5px;padding:11px 20px}
+.catnav a{white-space:nowrap;color:var(--sub);font-weight:500}
+.catnav a:hover{color:var(--deep)}
+
+.hero{position:relative;overflow:hidden;background:linear-gradient(155deg,var(--deep) 0%,var(--navy) 42%,var(--teal) 100%);padding:64px 0 76px}
+.hero::before{content:'';position:absolute;width:520px;height:520px;border-radius:50%;background:radial-gradient(circle,rgba(123,189,232,.35),transparent 70%);top:-220px;right:-140px;filter:blur(10px)}
+.hero::after{content:'';position:absolute;width:360px;height:360px;border-radius:50%;background:radial-gradient(circle,rgba(110,162,179,.3),transparent 70%);bottom:-180px;left:-100px}
+.hero .wrap{position:relative;display:flex;align-items:center;gap:52px;flex-wrap:wrap}
+.hero-text{flex:1 1 400px}
+.hero-text .kicker{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:var(--mist);font-size:13px;font-weight:500;padding:7px 14px;border-radius:20px;margin-bottom:18px}
+.hero-text h1{font-size:clamp(32px,4.4vw,48px);line-height:1.14;font-weight:800;letter-spacing:-0.025em;color:#fff;max-width:12ch}
+.hero-text p{margin-top:18px;color:var(--mist);font-size:16.5px;max-width:44ch;line-height:1.65}
+.hero-cta{margin-top:28px;display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{background:#fff;color:var(--deep);padding:14px 26px;border-radius:13px;font-weight:700;font-size:14.5px;box-shadow:0 10px 24px rgba(0,0,0,.18)}
+.btn-ghost{border:1.5px solid rgba(255,255,255,.4);padding:14px 26px;border-radius:13px;font-weight:600;font-size:14.5px;color:#fff}
+.hero-card{flex:1 1 300px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);border-radius:22px;padding:28px;backdrop-filter:blur(10px)}
+.hero-card .label{font-size:13px;color:var(--mist)}
+.hero-card .figure{font-size:40px;font-weight:800;margin:6px 0 20px;color:#fff}
+.wave-row{display:flex;gap:6px;align-items:flex-end;height:58px}
+.wave-row div{flex:1;background:linear-gradient(180deg,#fff,var(--sky));border-radius:5px 5px 0 0;opacity:.9}
+
+.chips{padding:38px 0 8px}
+.chips-grid{display:flex;gap:14px;overflow-x:auto;padding-bottom:6px}
+.chip{flex:0 0 auto;background:var(--card);border:1px solid rgba(10,65,116,.1);border-radius:16px;padding:17px 22px;display:flex;flex-direction:column;align-items:center;gap:9px;min-width:100px;box-shadow:0 2px 10px rgba(0,29,57,.04);transition:transform .15s,box-shadow .15s}
+.chip .ico{font-size:23px}
+.chip span{font-size:12.5px;font-weight:600;color:var(--navy);text-align:center}
+.chip:hover{transform:translateY(-3px);box-shadow:0 10px 22px rgba(0,29,57,.1)}
+
+.section{padding:40px 0}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px}
+.section-head h2{font-size:23px;font-weight:700;color:var(--deep);letter-spacing:-0.01em}
+.section-head a{font-size:13.5px;font-weight:600;color:var(--slate)}
+
+.flash{background:linear-gradient(135deg,var(--deep),var(--navy));border-radius:24px;padding:28px;position:relative;overflow:hidden}
+.flash::before{content:'';position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(123,189,232,.25),transparent 70%);top:-120px;right:-60px}
+.flash-head{position:relative;display:flex;align-items:center;gap:14px;margin-bottom:20px;flex-wrap:wrap}
+.flash-head h2{color:#fff;font-size:21px;font-weight:700}
+.timer{display:flex;gap:6px}
+.timer span{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-weight:700;font-size:13px;padding:6px 10px;border-radius:8px}
+
+.grid{position:relative;display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:16px}
+.card{background:var(--card);border-radius:18px;overflow:hidden;border:1px solid rgba(10,65,116,.08);box-shadow:0 2px 10px rgba(0,29,57,.05);transition:transform .15s,box-shadow .15s}
+.card:hover{transform:translateY(-4px);box-shadow:0 14px 28px rgba(0,29,57,.12)}
+.card .thumb{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;font-size:46px;background:linear-gradient(150deg,var(--mist),var(--sky) 130%)}
+.card .info{padding:13px 14px 15px}
+.card .name{font-size:13.5px;font-weight:500;line-height:1.4;min-height:2.6em}
+.card .price{font-size:15.5px;font-weight:700;color:var(--deep);margin-top:7px}
+.card .meta{font-size:11.5px;color:var(--sub);margin-top:3px}
+.badge{display:inline-block;font-size:10.5px;font-weight:700;background:var(--teal);color:#fff;padding:3px 8px;border-radius:7px;margin-top:7px}
+
+.banner{background:linear-gradient(120deg,var(--slate),var(--teal) 60%,var(--sea));border-radius:24px;padding:38px 34px;display:flex;align-items:center;justify-content:space-between;gap:26px;flex-wrap:wrap;color:#fff;position:relative;overflow:hidden}
+.banner::before{content:'';position:absolute;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.14),transparent 70%);right:-100px;bottom:-140px}
+.banner h3{font-size:25px;font-weight:800;max-width:22ch;position:relative;letter-spacing:-0.01em}
+.banner p{margin-top:10px;color:#fff;opacity:.92;font-size:15px;position:relative;font-weight:400}
+.banner .btn-primary{margin-top:18px;position:relative}
+
+footer{background:var(--deep);color:var(--mist);margin-top:44px;padding:48px 0 28px}
+.foot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:30px}
+.foot-grid h4{color:#fff;font-size:14px;margin-bottom:13px;font-weight:600}
+.foot-grid a{display:block;font-size:13.5px;padding:5px 0;color:rgba(255,255,255,.68)}
+.foot-grid a:hover{color:#fff}
+.copyright{margin-top:36px;padding-top:22px;border-top:1px solid rgba(255,255,255,.12);font-size:12.5px;color:rgba(255,255,255,.55)}
+
+@media(max-width:640px){
+  .topbar{flex-wrap:wrap}
+  .search{order:3;flex-basis:100%}
+  .hero{padding:44px 0 52px}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="topbar">
+    <a class="brand" href="#">Samudra<span>.</span></a>
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>
+      <input type="text" placeholder="Cari produk, brand, atau toko...">
+      <button>Cari</button>
+    </div>
+    <div class="top-actions">
+      <a href="#">Bantuan</a>
+      <a href="#">Masuk</a>
+      <a class="pill-btn" href="#">Daftar</a>
+    </div>
+  </div>
+  <nav class="catnav">
+    <div class="wrap">
+      <a href="#">Elektronik</a>
+      <a href="#">Fashion</a>
+      <a href="#">Rumah Tangga</a>
+      <a href="#">Kecantikan</a>
+      <a href="#">Hobi &amp; Koleksi</a>
+      <a href="#">Ibu &amp; Bayi</a>
+      <a href="#">Olahraga</a>
+      <a href="#">Otomotif</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap">
+    <div class="hero-text">
+      <div class="kicker">Marketplace lokal, ongkir hemat</div>
+      <h1>Semua kebutuhanmu, satu arus belanja</h1>
+      <p>Ribuan penjual terpercaya, gratis ongkir ke seluruh Indonesia, dan pembayaran yang selalu aman.</p>
+      <div class="hero-cta">
+        <a class="btn-primary" href="#">Mulai Belanja</a>
+        <a class="btn-ghost" href="#">Jadi Penjual</a>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="label">Transaksi hari ini</div>
+      <div class="figure">128.430</div>
+      <div class="wave-row">
+        <div style="height:40%"></div><div style="height:65%"></div><div style="height:50%"></div>
+        <div style="height:80%"></div><div style="height:60%"></div><div style="height:95%"></div>
+        <div style="height:70%"></div><div style="height:85%"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap chips">
+  <div class="chips-grid">
+    <div class="chip"><div class="ico">📱</div><span>Elektronik</span></div>
+    <div class="chip"><div class="ico">👕</div><span>Fashion</span></div>
+    <div class="chip"><div class="ico">🛋️</div><span>Rumah</span></div>
+    <div class="chip"><div class="ico">💄</div><span>Kecantikan</span></div>
+    <div class="chip"><div class="ico">🍼</div><span>Ibu &amp; Bayi</span></div>
+    <div class="chip"><div class="ico">⚽</div><span>Olahraga</span></div>
+    <div class="chip"><div class="ico">🚗</div><span>Otomotif</span></div>
+    <div class="chip"><div class="ico">📚</div><span>Buku</span></div>
+  </div>
+</div>
+
+<section class="section wrap">
+  <div class="flash">
+    <div class="flash-head">
+      <h2>Flash Sale</h2>
+      <div class="timer"><span>02</span><span>:</span><span>14</span><span>:</span><span>08</span></div>
+    </div>
+    <div class="grid">
+      <div class="card">
+        <div class="thumb">🎧</div>
+        <div class="info">
+          <div class="name">Headphone Bluetooth Bass Pro</div>
+          <div class="price">Rp249.000</div>
+          <div class="meta">Terjual 1,2rb</div>
+          <span class="badge">-40%</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb">⌚</div>
+        <div class="info">
+          <div class="name">Smartwatch Layar AMOLED</div>
+          <div class="price">Rp389.000</div>
+          <div class="meta">Terjual 856</div>
+          <span class="badge">-35%</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb">👟</div>
+        <div class="info">
+          <div class="name">Sepatu Lari Ringan Unisex</div>
+          <div class="price">Rp215.000</div>
+          <div class="meta">Terjual 2,3rb</div>
+          <span class="badge">-50%</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="thumb">🧴</div>
+        <div class="info">
+          <div class="name">Paket Skincare Brightening</div>
+          <div class="price">Rp129.000</div>
+          <div class="meta">Terjual 3,1rb</div>
+          <span class="badge">-30%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="section-head">
+    <h2>Rekomendasi Untukmu</h2>
+    <a href="#">Lihat semua</a>
+  </div>
+  <div class="grid">
+    <div class="card"><div class="thumb">💻</div><div class="info"><div class="name">Laptop Ultrabook 14" Ringan</div><div class="price">Rp6.499.000</div><div class="meta">Jakarta Barat</div></div></div>
+    <div class="card"><div class="thumb">🎒</div><div class="info"><div class="name">Tas Ransel Anti Air 25L</div><div class="price">Rp175.000</div><div class="meta">Bandung</div></div></div>
+    <div class="card"><div class="thumb">🪑</div><div class="info"><div class="name">Kursi Kerja Ergonomis</div><div class="price">Rp890.000</div><div class="meta">Surabaya</div></div></div>
+    <div class="card"><div class="thumb">📷</div><div class="info"><div class="name">Kamera Mirrorless Entry Level</div><div class="price">Rp4.250.000</div><div class="meta">Jakarta Selatan</div></div></div>
+    <div class="card"><div class="thumb">🛏️</div><div class="info"><div class="name">Set Sprei Katun Premium</div><div class="price">Rp225.000</div><div class="meta">Semarang</div></div></div>
+    <div class="card"><div class="thumb">🧸</div><div class="info"><div class="name">Mainan Edukasi Anak</div><div class="price">Rp95.000</div><div class="meta">Yogyakarta</div></div></div>
+  </div>
+</section>
+
+<section class="section wrap">
+  <div class="banner">
+    <div>
+      <h3>Buka toko dan jangkau jutaan pembeli</h3>
+      <p>Gratis daftar, tanpa biaya bulanan, cair langsung ke rekeningmu.</p>
+      <a class="btn-primary" href="#">Daftar Jadi Penjual</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h4>Belanja</h4>
+        <a href="#">Kategori</a>
+        <a href="#">Flash Sale</a>
+        <a href="#">Voucher</a>
+      </div>
+      <div>
+        <h4>Bantuan</h4>
+        <a href="#">Pusat Bantuan</a>
+        <a href="#">Lacak Pesanan</a>
+        <a href="#">Pengembalian</a>
+      </div>
+      <div>
+        <h4>Tentang</h4>
+        <a href="#">Tentang Samudra</a>
+        <a href="#">Karier</a>
+        <a href="#">Blog</a>
+      </div>
+      <div>
+        <h4>Jual di Samudra</h4>
+        <a href="#">Mulai Berjualan</a>
+        <a href="#">Pusat Edukasi Seller</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Samudra. Semua hak dilindungi.</div>
+  </div>
+</footer>
+
+</body>
+</html>
